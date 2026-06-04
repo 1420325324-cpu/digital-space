@@ -14,25 +14,25 @@ interface FocusCloudProps {
 export default function FocusCloud({ areas }: FocusCloudProps) {
   return (
     <motion.div
-      className="flex flex-col items-center gap-4"
+      className="flex flex-col items-center gap-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.2 }}
     >
-      <p className="text-xs tracking-widest text-neutral-400 uppercase">
+      <p className="text-xs tracking-[0.3em] text-neutral-500 uppercase font-medium">
         Focus
       </p>
 
       {/* 气泡云 */}
-      <div className="flex flex-wrap items-center justify-center gap-3 max-w-xs">
+      <div className="flex flex-wrap items-center justify-center gap-4 max-w-xs">
         {areas.map((area, i) => {
-          const size = 32 + area.weight * 48
-          const opacity = 0.4 + area.weight * 0.6
+          const size = 40 + area.weight * 56
+          const opacity = 0.6 + area.weight * 0.4
 
           return (
             <motion.div
               key={area.name}
-              className="flex items-center justify-center rounded-full border border-neutral-200"
+              className="flex items-center justify-center rounded-full border-2 border-neutral-300 bg-white/50 backdrop-blur-sm"
               style={{
                 width: size,
                 height: size,
@@ -47,13 +47,14 @@ export default function FocusCloud({ areas }: FocusCloudProps) {
                 stiffness: 200,
               }}
               whileHover={{
-                scale: 1.1,
-                borderColor: 'rgba(180,200,230,0.6)',
+                scale: 1.15,
+                borderColor: 'rgba(120,160,220,0.8)',
+                boxShadow: '0 0 20px rgba(120,160,220,0.3)',
               }}
             >
               <span
-                className="text-neutral-500 font-light select-none"
-                style={{ fontSize: `${10 + area.weight * 6}px` }}
+                className="text-neutral-700 font-medium select-none"
+                style={{ fontSize: `${12 + area.weight * 8}px` }}
               >
                 {area.name}
               </span>

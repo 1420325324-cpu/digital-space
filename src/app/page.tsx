@@ -21,7 +21,7 @@ export default function Home() {
   const { dimensions } = state
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center px-6 py-12">
+    <main className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16">
       {/* 流动粒子背景 */}
       <FluidBackground
         mood={dimensions.mood.temperature}
@@ -30,19 +30,26 @@ export default function Home() {
 
       {/* 顶部 - 抽象标识 */}
       <motion.div
-        className="mb-16 text-center"
+        className="mb-20 text-center"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5 }}
       >
-        <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 border border-neutral-200/50" />
-        <p className="text-[10px] tracking-[0.3em] text-neutral-300 uppercase">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 border border-neutral-300/50 shadow-lg" />
+        <p className="text-sm tracking-[0.5em] text-neutral-400 uppercase font-medium">
           digital space
+        </p>
+        <p className="text-xs text-neutral-300 mt-2">
+          {new Date(state.lastUpdated).toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
         </p>
       </motion.div>
 
       {/* 核心区域 - 五个维度 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-4xl w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 max-w-5xl w-full">
         {/* 第一行：能量 + 关注 + 情绪 */}
         <EnergyOrb
           value={dimensions.energy.value}
@@ -70,19 +77,27 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 底部 - 更新时间 */}
+      {/* 底部 - 状态摘要 */}
       <motion.div
-        className="mt-20 text-center"
+        className="mt-24 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
       >
-        <p className="text-[10px] tracking-widest text-neutral-300">
-          {new Date(state.lastUpdated).toLocaleDateString('zh-CN', {
-            month: 'long',
-            day: 'numeric',
-          })}
-        </p>
+        <div className="flex items-center justify-center gap-8 text-neutral-400">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="text-xs">能量 {dimensions.energy.label}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-blue-400" />
+            <span className="text-xs">情绪 {dimensions.mood.label}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-purple-400" />
+            <span className="text-xs">思维 {dimensions.thinking.label}</span>
+          </div>
+        </div>
       </motion.div>
     </main>
   )

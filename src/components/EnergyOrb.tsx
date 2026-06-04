@@ -9,52 +9,66 @@ interface EnergyOrbProps {
 }
 
 export default function EnergyOrb({ value, delta, label }: EnergyOrbProps) {
-  const size = 80 + value * 120
-  const glowIntensity = value * 30
+  const size = 100 + value * 150
+  const glowIntensity = value * 50
   const pulseSpeed = 2 + (1 - value) * 3
 
   return (
     <motion.div
-      className="relative flex flex-col items-center gap-3"
+      className="relative flex flex-col items-center gap-4"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.2, ease: 'easeOut' }}
     >
       {/* 能量球 */}
       <motion.div
-        className="rounded-full"
+        className="rounded-full relative"
         style={{
           width: size,
           height: size,
           background: `radial-gradient(circle at 35% 35%,
-            rgba(255,255,255,0.9),
-            rgba(200,220,240,0.6) 40%,
-            rgba(150,180,220,0.3) 70%,
+            rgba(255,255,255,1),
+            rgba(180,210,240,0.9) 30%,
+            rgba(120,160,220,0.7) 60%,
+            rgba(80,120,200,0.4) 80%,
             transparent)`,
-          boxShadow: `0 0 ${glowIntensity}px rgba(180,200,230,0.4),
-                      inset 0 0 ${glowIntensity / 2}px rgba(255,255,255,0.3)`,
+          boxShadow: `
+            0 0 ${glowIntensity}px rgba(100,150,220,0.6),
+            0 0 ${glowIntensity * 2}px rgba(100,150,220,0.3),
+            inset 0 0 ${glowIntensity}px rgba(255,255,255,0.4)
+          `,
         }}
         animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.8, 1, 0.8],
+          scale: [1, 1.06, 1],
+          opacity: [0.9, 1, 0.9],
         }}
         transition={{
           duration: pulseSpeed,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-      />
+      >
+        {/* 内部光晕 */}
+        <div
+          className="absolute inset-4 rounded-full"
+          style={{
+            background: `radial-gradient(circle at 40% 40%,
+              rgba(255,255,255,0.8),
+              transparent 60%)`,
+          }}
+        />
+      </motion.div>
 
       {/* 标签 */}
       <div className="text-center">
-        <p className="text-xs tracking-widest text-neutral-400 uppercase">
+        <p className="text-xs tracking-[0.3em] text-neutral-500 uppercase font-medium">
           Energy
         </p>
-        <p className="text-sm font-light text-neutral-600 mt-1">
+        <p className="text-lg font-light text-neutral-700 mt-2">
           {label}
         </p>
         {delta !== 0 && (
-          <p className={`text-xs mt-1 ${delta > 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+          <p className={`text-sm mt-2 font-medium ${delta > 0 ? 'text-emerald-600' : 'text-rose-500'}`}>
             {delta > 0 ? '↑' : '↓'} {Math.abs(delta * 100).toFixed(0)}%
           </p>
         )}
