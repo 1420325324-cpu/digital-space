@@ -1,5 +1,10 @@
 {
   "lastUpdated": "2026-06-04T13:00:00+08:00",
+  "identity": {
+    "name": "李过年",
+    "tagline": "在数据与直觉之间，找到第三条路",
+    "bio": "9年营销人，从线下到线上，从流量到留量。相信好的运营是让数据说人话。"
+  },
   "dimensions": {
     "energy": {
       "value": 0.72,
@@ -26,5 +31,14 @@
       "work": 0.6,
       "life": 0.4
     }
+  },
+  "recent": {
+    "topics": ["会员体系重构", "AI自动化", "用户生命周期", "数据驱动决策"],
+    "activity": "正在探索AI与营销的交叉地带"
+  },
+  "now": {
+    "status": "研究汉堡王CRM体系，准备下一场仗",
+    "listening": null,
+    "reading": null
   }
 }

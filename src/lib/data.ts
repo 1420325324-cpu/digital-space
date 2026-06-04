@@ -28,9 +28,29 @@ export interface Dimensions {
   }
 }
 
+export interface Identity {
+  name: string
+  tagline: string
+  bio: string
+}
+
+export interface Recent {
+  topics: string[]
+  activity: string
+}
+
+export interface Now {
+  status: string
+  listening: string | null
+  reading: string | null
+}
+
 export interface State {
   lastUpdated: string
+  identity: Identity
   dimensions: Dimensions
+  recent: Recent
+  now: Now
 }
 
 export function getState(): State {
