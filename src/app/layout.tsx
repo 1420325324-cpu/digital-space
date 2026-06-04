@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Digital Space",
-  description: "A personal digital space",
+  title: "李过年 · 数字空间",
+  description: "在数据与直觉之间，找到第三条路",
 };
 
 export default function RootLayout({
@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="zh-CN" className="dark">
+      <body>{children}</body>
     </html>
   );
 }

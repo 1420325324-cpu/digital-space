@@ -27,11 +27,10 @@ function Wave({ temperature }: { temperature: number }) {
     posAttr.needsUpdate = true
   })
 
-  // temperature: 0=冷蓝, 1=暖橙
   const color = useMemo(() => {
-    const r = 0.5 + temperature * 0.5
-    const g = 0.6 - temperature * 0.3
-    const b = 0.85 - temperature * 0.65
+    const r = 0.4 + temperature * 0.5
+    const g = 0.4 + (1 - temperature) * 0.1
+    const b = 0.7 + (1 - temperature) * 0.2
     return new THREE.Color(r, g, b)
   }, [temperature])
 
@@ -40,7 +39,7 @@ function Wave({ temperature }: { temperature: number }) {
       <meshBasicMaterial
         color={color}
         transparent
-        opacity={0.8}
+        opacity={0.6}
         side={THREE.DoubleSide}
         wireframe
       />
@@ -55,32 +54,10 @@ interface MoodWaveProps {
 
 export default function MoodWave({ temperature, label }: MoodWaveProps) {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <p className="text-xs tracking-[0.3em] text-neutral-500 uppercase font-medium">
-        Mood
-      </p>
-
-      <div className="w-56 h-20">
-        <Canvas camera={{ position: [0, 0.5, 2], fov: 50 }}>
-          <Wave temperature={temperature} />
-        </Canvas>
-      </div>
-
-      {/* 温度条 */}
-      <div className="w-40 h-1.5 bg-neutral-200 rounded-full overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-1000"
-          style={{
-            width: `${temperature * 100}%`,
-            background: `linear-gradient(90deg,
-              rgb(100,140,200),
-              rgb(180,150,130) 50%,
-              rgb(220,130,80))`,
-          }}
-        />
-      </div>
-
-      <p className="text-lg font-light text-neutral-700">{label}</p>
+    <div className="w-full h-full">
+      <Canvas camera={{ position: [0, 0.5, 2], fov: 50 }}>
+        <Wave temperature={temperature} />
+      </Canvas>
     </div>
   )
 }
