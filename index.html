@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>傲胜「荐」者「友」赏 老客推荐计划</title>
+<meta name="description" content="傲胜中国「荐」者「友」赏老客推荐计划：双向激励 + 阶梯奖励 + 三触点闭环，SG验证月均产出30倍提升模型复制中国市场">
+<style>
+  :root {
+    --ink: #1C1C1E;
+    --gold: #C8A96E;
+    --gold-light: #E8D5B0;
+    --cream: #F7F3ED;
+    --green: #2D4A3E;
+    --green-light: #3D6B5A;
+    --grey: #A0A0A5;
+    --white: #FFFFFF;
+    --border: #E5E0D8;
+    --font-serif: 'Noto Sans SC', sans-serif;
+    --font-sans: 'Noto Sans SC', sans-serif;
+    --font-display: 'Noto Sans SC', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    animation: pageLoad 0.8s ease forwards;
+  }
+
+  @keyframes pageLoad {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(28, 28, 30, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+  }
+  nav .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    height: 56px;
+  }
+  nav .logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  nav .logo:hover {
+    opacity: 0.8;
+  }
+  nav .logo span {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--grey);
+    margin-left: 12px;
+    letter-spacing: 1px;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  nav a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* Fullscreen button */
+  .fullscreen-btn {
+    background: none;
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--gold);
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+  .fullscreen-btn:hover {
+    background: rgba(200,169,110,0.1);
+    border-color: var(--gold);
+  }
+  .fullscreen-btn svg {
+    display: block;
+  }
+
+  /* Mobile hamburger */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 102;
+  }
+  .nav-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  @media (max-width: 900px) {
+    .nav-toggle { display: flex; }
+    nav ul {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      background: rgba(28, 28, 30, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 80px 2rem 2rem;
+      gap: 1.5rem;
+      transition: right 0.3s ease;
+      border-left: 1px solid rgba(200,169,110,0.2);
+    }
+    nav ul.open { right: 0; }
+    nav a { font-size: 1rem; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2.5rem 4rem;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(45, 74, 62, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(200, 169, 110, 0.08) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+  .hero-tag {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--grey);
+    font-weight: 300;
+    line-height: 1.9;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(200, 169, 110, 0.15);
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--gold);
+    font-weight: 700;
+    display: block;
+  }
+  .hero-stat .label {
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── SECTION ─── */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+  }
+  .section-tag {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+  }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--grey);
+    max-width: 560px;
+    margin: 1.5rem auto 0;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto;
+    transition: width 0.5s ease;
+  }
+  .section-header:hover .divider {
+    width: 80px;
+  }
+
+  /* ─── PROBLEM ─── */
+  .problem-section {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .problem-left h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  .problem-left p {
+    font-size: 0.95rem;
+    color: var(--grey);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+  }
+  .problem-right {
+    background: var(--ink);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .problem-right::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+  }
+  .problem-stat {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .problem-stat:last-child { margin-bottom: 0; }
+  .problem-stat .big {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--gold);
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+  }
+  .problem-stat .context {
+    font-size: 0.85rem;
+    color: var(--grey);
+    margin-top: 0.5rem;
+  }
+  .problem-stat .detail {
+    font-size: 0.75rem;
+    color: rgba(142, 142, 147, 0.6);
+    margin-top: 0.3rem;
+  }
+  .vs-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .vs-line::before, .vs-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200, 169, 110, 0.2);
+  }
+  .vs-line span {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  /* ─── MECHANISM ─── */
+  .mechanism-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 2rem;
+  }
+  .flow-step {
+    flex: 1;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+  .flow-step:not(:last-child) {
+    border-right: none;
+  }
+  .flow-step .step-num {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+  }
+  .flow-step .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .flow-step h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .flow-step p {
+    font-size: 0.82rem;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    padding: 0 0.3rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── REWARDS ─── */
+  .rewards-section {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .rewards-section .section-title { color: var(--white); }
+  .rewards-section .section-desc { color: var(--grey); }
+  .rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .reward-card {
+    border: 1px solid rgba(200, 169, 110, 0.15);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .reward-card:hover {
+    border-color: var(--gold);
+  }
+  .reward-card.featured {
+    border-color: var(--gold);
+  }
+  .reward-card .tier {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+  }
+  .reward-card .times {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .reward-card .times-label {
+    font-size: 0.75rem;
+    color: var(--grey);
+    margin-bottom: 1.5rem;
+  }
+  .reward-card .reward-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .reward-card .reward-value {
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+  .reward-card .reward-desc {
+    font-size: 0.78rem;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+  .reward-card .badge {
+    position: absolute;
+    top: -1px;
+    right: 2rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  /* ─── FRIEND BENEFIT ─── */
+  .friend-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .friend-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .friend-card .product {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .friend-card .product-cn {
+    font-size: 0.82rem;
+    color: var(--grey);
+    margin-bottom: 0.8rem;
+  }
+  .friend-card .discount {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .friend-card .discount-label {
+    font-size: 0.75rem;
+    color: var(--grey);
+  }
+
+  /* ─── COMPARISON ─── */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  .comparison-table thead {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .comparison-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  .comparison-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .comparison-table tbody tr:hover {
+    background: rgba(200, 169, 110, 0.04);
+  }
+  .comparison-table .highlight {
+    color: var(--green);
+    font-weight: 500;
+  }
+  .comparison-table .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.5px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 1.5rem 0 2.5rem 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -3rem;
+    top: 1.8rem;
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateX(-3px);
+  }
+  .timeline-item.active::before {
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(45, 74, 62, 0.15);
+  }
+  .timeline-date {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc {
+    font-size: 0.85rem;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: rgba(200,169,110,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+  .highlight-box strong { color: var(--gold); }
+
+  /* ─── INLINE HIGHLIGHT ─── */
+  .hl {
+    background: linear-gradient(180deg, transparent 55%, rgba(200,169,110,0.3) 55%);
+    padding: 0 3px;
+    font-weight: 600;
+  }
+  .hl-green {
+    background: linear-gradient(180deg, transparent 55%, rgba(45,74,62,0.2) 55%);
+    padding: 0 3px;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .hl-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200,169,110,0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(200,169,110,0); }
+  }
+  .animate:not(section) { opacity: 0; }
+  .animate.visible { animation: fadeUp 0.7s ease forwards; opacity: 1; }
+  .animate-delay-1 { animation-delay: 0.15s !important; }
+  .animate-delay-2 { animation-delay: 0.3s !important; }
+  .animate-delay-3 { animation-delay: 0.45s !important; }
+  .animate-delay-4 { animation-delay: 0.6s !important; }
+  .hero-content { animation: fadeIn 1s ease forwards; }
+  .hero-stat { animation: fadeUp 0.8s ease forwards; }
+  .hero-stat:nth-child(2) { animation-delay: 0.2s; }
+  .hero-stat:nth-child(3) { animation-delay: 0.4s; }
+  .timeline-item.active::before { animation: pulse 2s ease infinite; }
+
+  /* ─── ENHANCED ANIMATIONS ─── */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(2deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(200,169,110,0.1); }
+    50% { box-shadow: 0 0 40px rgba(200,169,110,0.2); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  @keyframes rotateIn {
+    from { transform: rotate(-180deg) scale(0); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+  }
+
+  /* Card hover effects */
+  .reward-card, .friend-card, .kpi-card, .flow-step {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .reward-card:hover, .friend-card:hover, .kpi-card:hover, .flow-step:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 0 40px rgba(200,169,110,0.2);
+    border-color: var(--gold);
+  }
+  .reward-card::after, .friend-card::after, .kpi-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(200,169,110,0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+  .reward-card:hover::after, .friend-card:hover::after, .kpi-card:hover::after {
+    opacity: 1;
+  }
+  .reward-card::before, .friend-card::before, .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.1), transparent);
+    transition: left 0.6s;
+    pointer-events: none;
+  }
+  .reward-card:hover::before, .friend-card:hover::before, .kpi-card:hover::before {
+    left: 100%;
+  }
+
+  /* Button glow effect */
+  .hero-tag {
+    position: relative;
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid rgba(200,169,110,0.3);
+    border-radius: 4px;
+    animation: glow 3s ease infinite;
+  }
+
+  /* Decorative elements */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.15);
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+  .deco-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.2), transparent);
+    pointer-events: none;
+  }
+
+  /* Number counter animation */
+  .count-up {
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  /* Mouse follower glow */
+  .mouse-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+  .mouse-glow.active { opacity: 1; }
+
+  /* Particle canvas */
+  #particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--green));
+    z-index: 101;
+    transition: width 0.1s;
+  }
+
+  /* Timeline enhanced */
+  .timeline-item {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    padding-left: 2rem;
+  }
+  .timeline-item:hover {
+    transform: translateX(15px);
+    background: rgba(200,169,110,0.03);
+    border-radius: 8px;
+  }
+  .timeline-item:hover .timeline-title {
+    color: var(--gold);
+  }
+  .timeline-item:hover::before {
+    transform: translateX(-3px) scale(1.3);
+    box-shadow: 0 0 0 6px rgba(200,169,110,0.2);
+  }
+
+  /* Section reveal - only apply when JS adds .animate class */
+  section.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  section.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Nav enhanced */
+  nav {
+    transition: all 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(28, 28, 30, 0.98);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  /* ─── KPI ─── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .kpi-card .kpi-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--ink);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .kpi-card .kpi-unit {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+  }
+  .kpi-card .kpi-label {
+    font-size: 0.82rem;
+    color: var(--grey);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(200, 169, 110, 0.15);
+  }
+  footer .footer-brand {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+  }
+  footer .footer-text {
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 1px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    /* Typography */
+    .hero h1 { font-size: 2rem; }
+    .section-title { font-size: 1.5rem; }
+    .section-desc { font-size: 0.9rem; }
+
+    /* Spacing */
+    section { padding: 3rem 1.5rem; }
+    .section-header { margin-bottom: 2.5rem; }
+
+    /* Grids */
+    .problem-grid { grid-template-columns: 1fr; }
+    .mechanism-flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; justify-content: center; }
+    .flow-step { border-right: 1px solid var(--border); border-bottom: none; }
+    .rewards-grid { grid-template-columns: 1fr; }
+    .friend-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    .mouse-glow { display: none; }
+
+    /* Hero */
+    .hero { padding: 4rem 1.5rem 3rem; min-height: auto; }
+    .hero-stats { gap: 1rem; }
+    .hero-stat .num { font-size: 1.8rem; }
+
+    /* Evolution section - stack cards */
+    #evolution [style*="grid-template-columns:1fr 60px 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    #evolution [style*="grid-template-columns:1fr 60px 1fr"] > div:nth-child(2) {
+      transform: rotate(90deg);
+      padding: 0.5rem 0;
+    }
+
+    /* Rewards section - stack columns */
+    #rewards [style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* KPI section - stack targets */
+    #kpi [style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Evolution summary - horizontal scroll on mobile */
+    .evolution-summary {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 0.75rem !important;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.5rem;
+    }
+    .evolution-summary > div {
+      min-width: 120px;
+      padding: 1rem 0.75rem !important;
+    }
+    .evolution-summary > div > div:first-child {
+      font-size: 1.3rem !important;
+    }
+
+    /* SG Reference - 2 columns */
+    [style*="grid-template-columns:repeat(4,1fr)"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Cards */
+    .reward-card, .friend-card, .kpi-card {
+      padding: 1.5rem 1rem;
+    }
+    .reward-card .times { font-size: 1.5rem; }
+    .friend-card .discount { font-size: 1.5rem; }
+
+    /* Timeline */
+    .timeline { padding-left: 2rem; }
+    .timeline-item { padding-left: 1rem; }
+    .timeline-item::before { left: -2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.6rem; }
+    .section-title { font-size: 1.3rem; }
+    .friend-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr; }
+    [style*="grid-template-columns:repeat(4,1fr)"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">「荐」者「友」赏</a>
+    <div class="nav-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul>
+      <li><a href="#background" onclick="closeMenu()">背景</a></li>
+      <li><a href="#evolution" onclick="closeMenu()">迭代</a></li>
+      <li><a href="#mechanism" onclick="closeMenu()">机制</a></li>
+      <li><a href="#rewards" onclick="closeMenu()">奖励</a></li>
+      <li><a href="#timeline" onclick="closeMenu()">节奏</a></li>
+      <li><a href="#kpi" onclick="closeMenu()">目标</a></li>
+    </ul>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" title="全屏">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="scroll-progress"></div>
+<div class="mouse-glow"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <canvas id="particles-canvas"></canvas>
+  <!-- Decorative SVG elements -->
+  <svg class="deco-circle" style="width:200px;height:200px;top:10%;left:5%;animation-delay:0s;" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(200,169,110,0.1)" stroke-width="1"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(200,169,110,0.08)" stroke-width="1"/>
+  </svg>
+  <svg class="deco-circle" style="width:150px;height:150px;bottom:15%;right:8%;animation-delay:2s;" viewBox="0 0 150 150">
+    <polygon points="75,10 140,130 10,130" fill="none" stroke="rgba(200,169,110,0.12)" stroke-width="1"/>
+  </svg>
+  <svg class="deco-circle" style="width:100px;height:100px;top:20%;right:15%;animation-delay:4s;" viewBox="0 0 100 100">
+    <rect x="10" y="10" width="80" height="80" fill="none" stroke="rgba(200,169,110,0.1)" stroke-width="1" transform="rotate(45 50 50)"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-tag">Customer Referral Program 2026</div>
+    <h1>「<em>荐</em>」者「<em>友</em>」赏<br>老客推荐计划升级</h1>
+    <p class="hero-sub">沿用现有计划名称，新增双向福利 + 老客阶梯奖励，结合三触点闭环激活转介绍</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">30×</span>
+        <span class="label">SG 月均产出提升</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">3触点</span>
+        <span class="label">彩信+AI外呼+短信闭环</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">8.4×</span>
+        <span class="label">SG 改进后营收增长</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BACKGROUND -->
+<section id="background" class="problem-section">
+  <div class="problem-grid">
+    <div class="problem-left">
+      <div class="section-tag">Background</div>
+      <h3>新加坡验证：<br>3 轮调整，数据已验证有效</h3>
+      <p>新加坡按摩椅/沙发推荐计划于 2025 年 3 月启动，历经 <span class="hl">多轮机制调整</span>和触达优化。</p>
+      <p>2026 年 1 月 23 日完成第三轮调整后，<span class="hl">2.5 个月内达成 149 个推荐</span>，月均产出从 2 单提升至 60 单，<span class="hl-num">增长约 30 倍</span>。</p>
+      <p>经过多轮迭代验证，推荐计划的机制和节奏已跑通，具备<span class="hl-green">直接全量复制</span>的条件。</p>
+    </div>
+    <div>
+      <div class="problem-right" style="display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:center;margin-bottom:1.5rem;">
+        <div class="problem-stat" style="margin-bottom:0;">
+          <span class="big">18</span>
+          <span class="context">SG 前 9 个月</span>
+        </div>
+        <div class="vs-line" style="margin:0;">
+          <span>VS</span>
+        </div>
+        <div class="problem-stat" style="margin-bottom:0;">
+          <span class="big">149</span>
+          <span class="context">SG 培训后 2.5 个月</span>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:0;">
+        <strong>关键洞察：</strong>从 18 单到 149 单，模型已验证有效。月均产出从 2 单提升至 60 单。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SG REFERENCE DATA -->
+<section class="problem-section">
+  <div class="section-header">
+    <div class="section-tag">SG Benchmark</div>
+    <h2 class="section-title">新加坡全周期数据参考</h2>
+    <div class="divider"></div>
+    <p class="section-desc">2025.3 – 2026.3 · 12个月 · 35家门店</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem;">
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--green);font-weight:700;">167</div>
+      <div style="font-size:0.72rem;color:var(--grey);margin-top:0.3rem;">累计有效推荐</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--green);font-weight:700;">170</div>
+      <div style="font-size:0.72rem;color:var(--grey);margin-top:0.3rem;">累计新增客户</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--green);font-weight:700;">124万</div>
+      <div style="font-size:0.72rem;color:var(--grey);margin-top:0.3rem;">累计营收（新元）</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--green);font-weight:700;">86.3%</div>
+      <div style="font-size:0.72rem;color:var(--grey);margin-top:0.3rem;">uDream AI 占比</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+    <div style="background:var(--white);border:1px solid var(--border);padding:2rem;">
+      <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;">阶段对比</div>
+      <div style="font-size:0.85rem;color:var(--grey);line-height:2;">
+        <div style="margin-bottom:0.8rem;">▸ <strong style="color:var(--ink);">初期（9个月）</strong>：18单 / SGD 13.3万 — 纯自动化触达</div>
+        <div>▸ <strong style="color:var(--ink);">改进后（2.5个月）</strong>：149单 / SGD 111.2万 — 物料+销售培训</div>
+      </div>
+    </div>
+    <div style="background:var(--ink);border:1px solid var(--gold);padding:2rem;position:relative;">
+      <div style="position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--ink);font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:1px;">核心</div>
+      <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;">关键成功因素</div>
+      <div style="font-size:0.88rem;color:var(--grey);line-height:2;">
+        <div style="margin-bottom:0.8rem;">▸ <strong style="color:var(--white);">下发实体宣传物料</strong>（standee、wobblers、海报）</div>
+        <div style="margin-bottom:0.8rem;">▸ <strong style="color:var(--white);">重新培训销售团队</strong>，将推荐纳入门店销售流程</div>
+        <div>▸ <strong style="color:var(--white);">调整阶梯奖励</strong>，从固定券改为实物+券包激励</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN ITERATION -->
+<section id="evolution" class="problem-section">
+  <div class="section-header">
+    <div class="section-tag">Evolution</div>
+    <h2 class="section-title">「荐」者「友」赏 计划迭代</h2>
+    <div class="divider"></div>
+    <p class="section-desc">从<span class="hl">单向券包</span>到<span class="hl-green">双向激励 + 多触点闭环</span>，底层工具始终是 EZR「推荐有礼」</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:stretch;">
+    <!-- 旧方案 -->
+    <div style="background:var(--white);border:1px solid var(--border);padding:2.5rem 2rem;">
+      <div style="font-family:var(--font-display);font-size:0.65rem;color:var(--grey);letter-spacing:3px;margin-bottom:1.5rem;">V1 · 原方案</div>
+      <div style="font-family:var(--font-serif);font-size:1.15rem;font-weight:600;margin-bottom:1.2rem;line-height:1.5;">单向现金券<br>被动触达</div>
+      <div style="font-size:0.88rem;color:var(--grey);line-height:2;">
+        <div style="margin-bottom:0.8rem;">▸ 新客首单消费满 <strong style="color:var(--ink);">¥6,000</strong></div>
+        <div style="margin-bottom:0.8rem;">▸ 老客领取 <strong style="color:var(--ink);">¥500 现金券</strong></div>
+        <div style="margin-bottom:0.8rem;">▸ +1 天发送短信通知</div>
+        <div>▸ +100 天再次短信提醒</div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--grey);line-height:1.7;">
+        <div style="color:var(--gold);font-size:0.7rem;letter-spacing:2px;margin-bottom:0.5rem;">局限</div>
+        仅触达老客，新客无感知；纯券包激励缺乏仪式感；两次短信间隔长，中间无触点
+      </div>
+    </div>
+    <!-- 箭头 -->
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <div style="font-size:1.8rem;color:var(--gold);">→</div>
+    </div>
+    <!-- 新方案 -->
+    <div style="background:var(--ink);border:1px solid var(--gold);padding:2.5rem 2rem;position:relative;">
+      <div style="position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--ink);font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:1px;">升级</div>
+      <div style="font-family:var(--font-display);font-size:0.65rem;color:var(--gold);letter-spacing:3px;margin-bottom:1.5rem;">V2 · 新方案</div>
+      <div style="font-family:var(--font-serif);font-size:1.15rem;font-weight:600;margin-bottom:1.2rem;line-height:1.5;color:var(--white);">双向激励<br>三触点闭环</div>
+      <div style="font-size:0.88rem;color:var(--grey);line-height:2;">
+        <div style="margin-bottom:0.8rem;">▸ <strong style="color:var(--white);">新老客均有优惠</strong>，双向驱动</div>
+        <div style="margin-bottom:0.8rem;">▸ 老客获 <strong style="color:var(--gold);">实物礼品 + 券包</strong> 阶梯奖励</div>
+        <div style="margin-bottom:0.8rem;">▸ +1 天彩信触达（活动介绍 + 落地页）</div>
+        <div style="margin-bottom:0.8rem;">▸ +30 天 <strong style="color:var(--gold);">AI 外呼</strong>（体验回访 + 活动再推）</div>
+        <div>▸ 挂机自动下发短信（落地页链接）</div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(200,169,110,0.2);font-size:0.78rem;color:var(--grey);line-height:1.7;">
+        <div style="color:var(--gold);font-size:0.7rem;letter-spacing:2px;margin-bottom:0.5rem;">底层工具</div>
+        全程使用 EZR 系统「推荐有礼」活动，优惠券自动发放至会员卡包，无需手动核销
+      </div>
+    </div>
+  </div>
+  <!-- 关键变化总结 -->
+  <div class="evolution-summary" style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">2→5</div>
+      <div style="font-size:0.75rem;color:var(--grey);margin-top:0.3rem;">触达触点数</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">单向→双向</div>
+      <div style="font-size:0.75rem;color:var(--grey);margin-top:0.3rem;">激励覆盖范围</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">券→实物+券</div>
+      <div style="font-size:0.75rem;color:var(--grey);margin-top:0.3rem;">奖励形态升级</div>
+    </div>
+  </div>
+</section>
+
+<!-- MECHANISM -->
+<section id="mechanism" style="position:relative;overflow:hidden;">
+  <!-- Decorative SVG -->
+  <svg style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;opacity:0.05;pointer-events:none;" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="90" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    <circle cx="100" cy="100" r="50" fill="none" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <div class="section-header">
+    <div class="section-tag">Mechanism</div>
+    <h2 class="section-title">活动机制</h2>
+    <div class="divider"></div>
+    <p class="section-desc">成单 <span class="hl">+1天彩信</span> → <span class="hl">+30天AI外呼</span> → <span class="hl">挂机短信</span>，三触点闭环驱动老客转介绍</p>
+  </div>
+  <div class="mechanism-flow">
+    <div class="flow-step">
+      <div class="step-num">STEP 01</div>
+      <span class="step-icon">🛒</span>
+      <h4>老客成单</h4>
+      <p>顾客完成按摩椅/沙发购买，系统自动建档入池</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">STEP 02</div>
+      <span class="step-icon">📩</span>
+      <h4>+1天 彩信触达</h4>
+      <p>自动发送彩信，含活动介绍 + 落地页链接，告知推荐双方均有优惠</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">STEP 03</div>
+      <span class="step-icon">📞</span>
+      <h4>+30天 AI外呼</h4>
+      <p>AI 电话回访使用体验，同步再推推荐活动，引导分享给身边朋友</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">STEP 04</div>
+      <span class="step-icon">💬</span>
+      <h4>挂机短信</h4>
+      <p>通话结束自动下发短信，附带活动落地页链接，缩短行动路径</p>
+    </div>
+  </div>
+  <div class="highlight-box">
+    <strong>核心机制：</strong>不依赖推荐码，通过「会员推荐有礼」工具，好友成交后优惠券<span class="hl-green">自动发放至老客会员卡包</span>，无需手动核销。老客只需分享链接，<span class="hl">系统自动完成后续全部动作</span>。
+  </div>
+</section>
+
+<!-- FRIEND BENEFIT -->
+<section>
+  <div class="section-header">
+    <div class="section-tag">Friend Benefit</div>
+    <h2 class="section-title">好友端专属优惠</h2>
+    <div class="divider"></div>
+    <p class="section-desc">好友通过邀请链接注册后购买，立享额外优惠</p>
+  </div>
+  <div class="friend-grid">
+    <div class="friend-card" style="border-color:var(--gold);">
+      <div class="product">注册礼券</div>
+      <div class="product-cn">小件产品可用</div>
+      <div class="discount">¥50</div>
+      <div class="discount-label">邀请注册即得</div>
+    </div>
+    <div class="friend-card">
+      <div class="product">OS8245 uDream.AI</div>
+      <div class="product-cn">5感养身椅</div>
+      <div class="discount">¥500</div>
+      <div class="discount-label">推荐立减</div>
+    </div>
+    <div class="friend-card">
+      <div class="product">OS8128 uLove 3</div>
+      <div class="product-cn">减压养身椅</div>
+      <div class="discount">¥500</div>
+      <div class="discount-label">推荐立减</div>
+    </div>
+    <div class="friend-card">
+      <div class="product">OS8242 uDivine V3</div>
+      <div class="product-cn">V手天王3</div>
+      <div class="discount">¥300</div>
+      <div class="discount-label">推荐立减</div>
+    </div>
+    <div class="friend-card">
+      <div class="product">OS8231 uDiva SOFA</div>
+      <div class="product-cn">沙发天后</div>
+      <div class="discount">¥300</div>
+      <div class="discount-label">推荐立减</div>
+    </div>
+  </div>
+</section>
+
+<!-- REWARDS -->
+<section id="rewards" class="rewards-section" style="position:relative;overflow:hidden;">
+  <!-- Decorative SVG -->
+  <svg style="position:absolute;bottom:-30px;left:-30px;width:180px;height:180px;opacity:0.06;pointer-events:none;" viewBox="0 0 180 180">
+    <polygon points="90,10 170,130 10,130" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    <polygon points="90,30 150,120 30,120" fill="none" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <div class="section-header">
+    <div class="section-tag">Rewards</div>
+    <h2 class="section-title">阶梯奖励设计</h2>
+    <div class="divider"></div>
+    <p class="section-desc">推荐越多，奖励越丰厚，驱动老客从「偶尔分享」变为「主动推广」</p>
+    <div style="font-size:0.82rem;color:var(--gold);margin-top:0.8rem;font-weight:500;">前提条件：邀请人需购买 uDream.AI / uLove 3 / uDivine V3 / uDiva SOFA 其中一款</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;">
+    <!-- 左：实物阶梯 -->
+    <div>
+      <div style="font-size:0.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;text-align:center;">实物奖励阶梯</div>
+      <div class="rewards-grid" style="grid-template-columns:1fr;gap:1rem;">
+        <div class="reward-card">
+          <div style="display:flex;align-items:center;gap:1.5rem;text-align:left;">
+            <div class="times" style="font-size:2rem;margin:0;">1次</div>
+            <div>
+              <div class="reward-name" style="margin-bottom:0.3rem;">OS141 眼部按摩仪</div>
+              <div class="reward-value" style="margin-bottom:0;">价值 ¥299</div>
+            </div>
+          </div>
+        </div>
+        <div class="reward-card featured">
+          <div class="badge">核心驱动</div>
+          <div style="display:flex;align-items:center;gap:1.5rem;text-align:left;">
+            <div class="times" style="font-size:2rem;margin:0;">3次</div>
+            <div>
+              <div class="reward-name" style="margin-bottom:0.3rem;">高端礼品套装</div>
+              <div class="reward-value" style="margin-bottom:0;">预估成本 ¥100/件 · 待选品采购</div>
+            </div>
+          </div>
+        </div>
+        <div class="reward-card">
+          <div style="display:flex;align-items:center;gap:1.5rem;text-align:left;">
+            <div class="times" style="font-size:2rem;margin:0;">5次</div>
+            <div>
+              <div class="reward-name" style="margin-bottom:0.3rem;">高端实物礼品 或 当地游乐园双人票</div>
+              <div class="reward-value" style="margin-bottom:0;">迪士尼 / 环球影城等</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 右：优惠券包 -->
+    <div>
+      <div style="font-size:0.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;text-align:center;">优惠券包（自动发放至卡包）</div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;">养身椅系列券</div>
+            <div style="font-size:0.82rem;color:var(--ink);font-weight:500;">养身椅全系列适用</div>
+          </div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">¥1,000</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;">隐形按摩椅套组 / 工学天王椅券</div>
+            <div style="font-size:0.82rem;color:var(--ink);font-weight:500;">隐形按摩椅套组、工学天王椅适用</div>
+          </div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">¥500</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;">小件按摩仪券</div>
+            <div style="font-size:0.82rem;color:var(--ink);font-weight:500;">颈部/眼部按摩仪等小件适用</div>
+          </div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">¥200</div>
+        </div>
+        <div style="font-size:0.75rem;color:var(--grey);text-align:center;margin-top:0.5rem;">好友成交后，优惠券自动发放至老客会员卡包，无需手动领取</div>
+        <div style="font-size:0.72rem;color:var(--gold);text-align:center;margin-top:0.3rem;">有效期 6 个月</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:2.5rem;background:linear-gradient(135deg,rgba(200,169,110,0.12),rgba(45,74,62,0.08));border:1px solid var(--gold);border-left:4px solid var(--gold);padding:2rem 2.5rem;">
+    <div style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:0.8rem;">双轨激励机制</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div>
+        <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.5rem;">实物礼品</div>
+        <div style="font-size:0.88rem;color:var(--grey);line-height:1.8;">制造仪式感和社交传播素材，阶梯设计驱动多次推荐</div>
+      </div>
+      <div>
+        <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.5rem;">优惠券包</div>
+        <div style="font-size:0.88rem;color:var(--grey);line-height:1.8;">驱动老客自身复购或转赠亲友，形成「推荐→奖励→再消费」闭环</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-header">
+    <div class="section-tag">Timeline</div>
+    <h2 class="section-title">执行节奏</h2>
+    <div class="divider"></div>
+    <p class="section-desc">方案设计 → 落地页 → 触达配置 → 导购培训 → 物料分发 → <span class="hl">全量上线</span></p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item active">
+      <div class="timeline-date">6.8 – 6.14</div>
+      <div class="timeline-title">活动方案设计</div>
+      <div class="timeline-desc">确定奖励梯度、好友端优惠、活动规则与话术</div>
+    </div>
+    <div class="timeline-item active">
+      <div class="timeline-date">6.15 – 6.21</div>
+      <div class="timeline-title">落地页设计 & 工具配置</div>
+      <div class="timeline-desc">活动落地页设计、「会员推荐有礼」工具配置（基于现有系统）、彩信/短信模板、<span class="hl">AI 外呼话术</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">6.22 – 6.28</div>
+      <div class="timeline-title">触达节点配置 & 联调</div>
+      <div class="timeline-desc">+1天彩信、+30天AI外呼、挂机短信全链路配置并内测跑通</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">6.29 – 7.5</div>
+      <div class="timeline-title">导购培训 & 物料分发</div>
+      <div class="timeline-desc">门店物料下发、导购话术培训、推荐流程演练（<span class="hl-green">SG 核心成功因素</span>）</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">7.6 – 7.12</div>
+      <div class="timeline-title">全量上线</div>
+      <div class="timeline-desc"><span class="hl">SG 3 轮迭代已验证模型有效</span>，全渠道同步铺开，数据追踪与持续优化</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">7.13 起</div>
+      <div class="timeline-title">长期运营</div>
+      <div class="timeline-desc">阶梯奖励迭代、触达话术优化、季度「推荐之星」评选</div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section id="kpi" style="position:relative;overflow:hidden;">
+  <!-- Decorative SVG -->
+  <svg style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:300px;height:100px;opacity:0.04;pointer-events:none;" viewBox="0 0 300 100">
+    <line x1="0" y1="50" x2="300" y2="50" stroke="var(--gold)" stroke-width="1"/>
+    <circle cx="150" cy="50" r="30" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    <circle cx="150" cy="50" r="20" fill="none" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <div class="section-header">
+    <div class="section-tag">Target</div>
+    <h2 class="section-title">目标 & KPI</h2>
+    <div class="divider"></div>
+    <p class="section-desc">基于行业 Benchmark 保守估算，SG 数据作为挑战目标依据</p>
+  </div>
+  <!-- 双目标对比 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+    <!-- 保守目标 -->
+    <div style="background:var(--white);border:1px solid var(--border);padding:2rem;">
+      <div style="font-size:0.7rem;color:var(--grey);letter-spacing:2px;margin-bottom:1.5rem;text-align:center;">保守目标 · 可承诺</div>
+      <div class="kpi-grid" style="grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--ink);font-weight:700;">72</div>
+          <div style="font-size:0.72rem;color:var(--gold);margin-top:0.2rem;">单/月</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--ink);font-weight:700;">20%</div>
+          <div style="font-size:0.72rem;color:var(--gold);margin-top:0.2rem;">参与率</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--ink);font-weight:700;">3</div>
+          <div style="font-size:0.72rem;color:var(--gold);margin-top:0.2rem;">单店月均</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--ink);font-weight:700;">24</div>
+          <div style="font-size:0.72rem;color:var(--gold);margin-top:0.2rem;">活跃门店</div>
+        </div>
+      </div>
+    </div>
+    <!-- 挑战目标 -->
+    <div style="background:var(--ink);border:1px solid var(--gold);padding:2rem;position:relative;">
+      <div style="position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--ink);font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:1px;">挑战</div>
+      <div style="font-size:0.7rem;color:var(--gold);letter-spacing:2px;margin-bottom:1.5rem;text-align:center;">挑战目标 · 对标 SG</div>
+      <div class="kpi-grid" style="grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700;">108</div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-top:0.2rem;">单/月</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700;">30%</div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-top:0.2rem;">参与率</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700;">3</div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-top:0.2rem;">单店月均</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700;">36</div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-top:0.2rem;">活跃门店</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 计算逻辑 -->
+  <div style="margin-top:3rem;background:var(--white);border:1px solid var(--border);padding:2.5rem;">
+    <div style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;margin-bottom:1.5rem;">计算逻辑 & 假设</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <!-- 左：计算公式 -->
+      <div>
+        <div style="font-size:0.85rem;color:var(--grey);line-height:2;">
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.5rem;">保守目标推导</div>
+            <div>CN 门店 <strong style="color:var(--ink);">120家</strong></div>
+            <div>× 参与率 <strong style="color:var(--ink);">20%</strong> = <strong style="color:var(--green);">24家活跃门店</strong></div>
+            <div>× 单店月均转化 <strong style="color:var(--ink);">3单</strong> = <strong style="color:var(--green);">72单/月</strong></div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.5rem;">挑战目标推导</div>
+            <div>CN 门店 <strong style="color:var(--ink);">120家</strong></div>
+            <div>× 参与率 <strong style="color:var(--ink);">30%</strong> = <strong style="color:var(--green);">36家活跃门店</strong></div>
+            <div>× 单店月均转化 <strong style="color:var(--ink);">3单</strong> = <strong style="color:var(--green);">108单/月</strong></div>
+          </div>
+        </div>
+      </div>
+      <!-- 右：SG 参考数据 -->
+      <div>
+        <div style="font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.8rem;">SG 实际参考数据</div>
+        <div style="font-size:0.82rem;color:var(--grey);line-height:2.2;">
+          <div>▸ <strong style="color:var(--ink);">149单 / 2.5个月</strong> — 物料下发+销售培训后</div>
+          <div>▸ <strong style="color:var(--ink);">16/35家门店</strong> 有成功推荐（45.7%参与率）</div>
+          <div>▸ <strong style="color:var(--ink);">SG营收 124万新元</strong> — 全周期累计</div>
+          <div>▸ <strong style="color:var(--ink);">uDream AI 占 86.3%</strong> — 绝对主力产品</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SG 对比参考 -->
+  <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+    <div style="background:var(--ink);padding:2rem;border:1px solid rgba(200,169,110,0.2);">
+      <div style="font-size:0.7rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;">SG 实际表现（乐观参考）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">149</div>
+          <div style="font-size:0.75rem;color:var(--grey);">2.5个月推荐数</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">30×</div>
+          <div style="font-size:0.75rem;color:var(--grey);">月均产出提升</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--white);padding:2rem;border:1px solid var(--border);">
+      <div style="font-size:0.7rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;">CN 目标</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">72</div>
+          <div style="font-size:0.75rem;color:var(--grey);">单/月（保守）</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--green);font-weight:700;">108</div>
+          <div style="font-size:0.75rem;color:var(--grey);">单/月（挑战）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">OSIM</div>
+  <div class="footer-text">傲胜中国 · 会员新零售 · 「荐」者「友」赏 老客推荐计划方案</div>
+</footer>
+
+<script>
+// ============ PARTICLE SYSTEM ============
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: 0, y: 0 };
+
+function resizeCanvas() {
+  const hero = document.querySelector('.hero');
+  canvas.width = hero.offsetWidth;
+  canvas.height = hero.offsetHeight;
+}
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.golden = Math.random() > 0.7;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.golden
+      ? `rgba(200, 169, 110, ${this.opacity})`
+      : `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+    ctx.fill();
+  }
+}
+
+function initParticles() {
+  resizeCanvas();
+  particles = [];
+  const count = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(200, 169, 110, ${0.08 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+let animationId;
+let isHeroVisible = true;
+
+function animateParticles() {
+  if (!isHeroVisible) {
+    animationId = requestAnimationFrame(animateParticles);
+    return;
+  }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  animationId = requestAnimationFrame(animateParticles);
+}
+
+// Pause particles when hero is not visible
+const heroObserver = new IntersectionObserver((entries) => {
+  isHeroVisible = entries[0].isIntersecting;
+}, { threshold: 0 });
+heroObserver.observe(document.querySelector('.hero'));
+
+initParticles();
+animateParticles();
+window.addEventListener('resize', initParticles);
+
+// ============ MOUSE GLOW ============
+const mouseGlow = document.querySelector('.mouse-glow');
+let mouseTimeout;
+
+document.addEventListener('mousemove', (e) => {
+  mouseGlow.style.left = e.clientX + 'px';
+  mouseGlow.style.top = e.clientY + 'px';
+  mouseGlow.classList.add('active');
+  clearTimeout(mouseTimeout);
+  mouseTimeout = setTimeout(() => mouseGlow.classList.remove('active'), 1000);
+});
+
+// ============ CONSOLIDATED SCROLL HANDLER (throttled) ============
+const scrollProgress = document.querySelector('.scroll-progress');
+const nav = document.querySelector('nav');
+let scrollTicking = false;
+
+function onScroll() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
+    nav.classList.toggle('scrolled', scrollTop > 50);
+
+    // Parallax decorations
+    document.querySelectorAll('.deco-circle').forEach((deco, i) => {
+      const speed = 0.02 + (i * 0.01);
+      deco.style.transform = `translateY(${scrollTop * speed}px) rotate(${scrollTop * 0.02}deg)`;
+    });
+    scrollTicking = false;
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ============ SCROLL REVEAL ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Trigger count-up for numbers
+      if (entry.target.classList.contains('kpi-num')) {
+        animateCountUp(entry.target);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('section, .section-header, .problem-grid, .mechanism-flow, .rewards-grid, .friend-grid, .comparison-table, .timeline-item, .kpi-card, .highlight-box, [style*="grid-template-columns:1fr 1fr"]').forEach(el => {
+  el.classList.add('animate');
+  observer.observe(el);
+});
+
+// Ensure sections become visible even if observer doesn't trigger
+setTimeout(() => {
+  document.querySelectorAll('section.animate:not(.visible)').forEach(el => {
+    el.classList.add('visible');
+  });
+}, 1500);
+
+// Stagger grid children
+document.querySelectorAll('.rewards-grid, .friend-grid, .kpi-grid').forEach(grid => {
+  grid.querySelectorAll(':scope > *').forEach((child, i) => {
+    child.classList.add('animate', `animate-delay-${i + 1}`);
+    observer.observe(child);
+  });
+});
+
+// ============ NUMBER COUNT-UP ============
+function animateCountUp(el) {
+  const text = el.textContent;
+  const match = text.match(/(\d+)/);
+  if (!match) return;
+
+  const target = parseInt(match[1]);
+  const prefix = text.substring(0, text.indexOf(match[1]));
+  const suffix = text.substring(text.indexOf(match[1]) + match[1].length);
+  const duration = 1500;
+  const start = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(target * eased);
+    el.textContent = prefix + current + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = text; // Restore original
+    }
+  }
+  requestAnimationFrame(update);
+}
+
+// ============ RIPPLE EFFECT ON CARDS ============
+document.querySelectorAll('.reward-card, .friend-card, .kpi-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.3);
+      transform: scale(0);
+      animation: ripple 0.6s ease-out;
+      pointer-events: none;
+    `;
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    this.style.position = 'relative';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// Add ripple animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+
+// ============ HERO STAT HOVER ============
+document.querySelectorAll('.hero-stat').forEach(stat => {
+  stat.addEventListener('mouseenter', () => {
+    stat.style.transform = 'scale(1.1) translateY(-5px)';
+    stat.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+  });
+  stat.addEventListener('mouseleave', () => {
+    stat.style.transform = 'scale(1) translateY(0)';
+  });
+});
+
+// ============ MOBILE MENU ============
+function toggleMenu() {
+  document.querySelector('.nav-toggle').classList.toggle('active');
+  document.querySelector('nav ul').classList.toggle('open');
+}
+function closeMenu() {
+  document.querySelector('.nav-toggle').classList.remove('active');
+  document.querySelector('nav ul').classList.remove('open');
+}
+// Close menu on outside click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('nav')) closeMenu();
+});
+
+// ============ FULLSCREEN ============
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.log('Fullscreen error:', err);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+// Update button icon on fullscreen change
+document.addEventListener('fullscreenchange', () => {
+  const btn = document.querySelector('.fullscreen-btn');
+  if (document.fullscreenElement) {
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14h6v6m10-10h-6V4m0 6l7-7M3 21l7-7"/>';
+    btn.title = '退出全屏';
+  } else {
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
+    btn.title = '全屏';
+  }
+});
+</script>
+
+</body>
+</html>
