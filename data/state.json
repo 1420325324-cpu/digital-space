@@ -1,0 +1,30 @@
+{
+  "lastUpdated": "2026-06-04T13:00:00+08:00",
+  "dimensions": {
+    "energy": {
+      "value": 0.72,
+      "delta": 0.05,
+      "label": "充盈"
+    },
+    "focus": {
+      "areas": [
+        { "name": "AI", "weight": 0.4 },
+        { "name": "CRM", "weight": 0.3 },
+        { "name": "数据分析", "weight": 0.2 },
+        { "name": "品牌", "weight": 0.1 }
+      ]
+    },
+    "mood": {
+      "temperature": 0.65,
+      "label": "温暖"
+    },
+    "thinking": {
+      "intensity": 0.78,
+      "label": "活跃"
+    },
+    "balance": {
+      "work": 0.6,
+      "life": 0.4
+    }
+  }
+}
